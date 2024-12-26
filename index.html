@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <div class="error__message">
+        <h2>Kechirasiz, lekin kiritilgan shaharni topa olmadik. Iltimos, qayta urinib ko‘ring!</h2>
+    </div>
+
     <div class="dashboard">
         <aside class="sidebar">
             <div class="menu-item"><i class="fa-solid fa-cloud-sun" style="color: #dedede;"></i> Weather</div>
@@ -17,11 +21,15 @@
             <div class="menu-item"><i class="fa-solid fa-sliders" style="color: #dedede;"></i> Settings</div>
         </aside>
 
+
         <main class="content">
             <div class="search-bar">
-                <input type="text" placeholder="Search for cities">
+                <form class="form" action="">
+                    <input class="search_inp" type="text" placeholder="Type the name of the city and press enter">
+                </form>
             </div>
 
+            
             <div class="current-weather">
                 <h1 class="city">O'zbekistan</h1>
                 <p class="rain-chance">Chance of rain: 0%</p>
@@ -44,7 +52,6 @@
             <div></div>
         </aside>
     </div>
-
 
     <script src="./app.js"></script>
 </body>

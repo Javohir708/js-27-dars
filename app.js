@@ -5,12 +5,16 @@ const timeEl = document.querySelector(".time")
 const imgEl =document.querySelector(".icon img")
 const weeklyEl = document.querySelector(".weekly")
 const hourlyEl = document.querySelector(".hourly")
+const formEl = document.querySelector(".form")
+const search_inpEl = document.querySelector(".search_inp")
+const errorMessageEl = document.querySelector(".error__message")
 
 
-const BASE_URL = "https://api.weatherapi.com/v1/forecast.json?key=475420c2f9584ce6a74131315242412&q=Tashkent&days=7&aqi=yes&alerts=yes"
+
+const BASE_URL = ""
 
 async function fetchWeather(city) {
-    const response = await fetch(BASE_URL)
+    const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=475420c2f9584ce6a74131315242412&q=${city}&days=7&aqi=yes&alerts=yes`)
     response 
         .json()
         .then(res => {
@@ -46,9 +50,30 @@ async function fetchWeather(city) {
             `;
             hourlyEl.appendChild(conditions);
         })
+        .catch(err => {
+            console.log(err);
+            errorMessageEl.style.display = "block";
+        
+            setTimeout(() => {
+                errorMessageEl.style.display = "none";
+            }, 3000);
+        });
+        
 }
 
 
 window.onload = () => {
-    fetchWeather()
+    fetchWeather('Tashkent')
 }
+
+
+formEl.addEventListener("submit", (e)=> {
+    e.preventDefault()
+    const city = search_inpEl
+    console.log(city.value)
+    fetchWeather(city.value)
+    
+    weeklyEl.innerHTML = ''
+    hourlyEl.innerHTML = ''
+    search_inpEl.value = ''
+})
